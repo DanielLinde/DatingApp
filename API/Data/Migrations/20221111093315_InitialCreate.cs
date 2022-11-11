@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -13,8 +14,11 @@ namespace API.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserName = table.Column<string>(type: "TEXT", nullable: true)
+                        .Annotation("SqlServer:Identity", "1,1"),
+                    UserName = table.Column<string>(type: "VARCHAR(128)", nullable: true),
+                    Email = table.Column<string>(type: "VARCHAR(256)", nullable: true),
+                    PasswordHash = table.Column<string>(type:"VARBINARY(MAX)", nullable: true),
+                    PasswordSalt = table.Column<string>(type: "VARBINARY(MAX)", nullable: true)
                 },
                 constraints: table =>
                 {
